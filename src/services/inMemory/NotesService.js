@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const { nanoid } = require('nanoid');
 
+// untuk mengelola resource notes yang disimpan pada memory (array)
 class NotesService {
   constructor() {
     this._notes = [];
@@ -26,10 +27,12 @@ class NotesService {
     return id;
   }
 
+  // get notes untuk membaca seluruh notes yang disimpan
   getNotes() {
     return this._notes;
   }
 
+  // getNoteById untuk membaca note berdasarkan id
   getNoteById(id) {
     const note = this._notes.filter((n) => n.id === id)[0];
     if (!note) {
@@ -40,10 +43,13 @@ class NotesService {
 
   editNoteById(id, { title, body, tags }) {
     const index = this._notes.findIndex((note) => note.id === id);
+
     if (index === -1) {
       throw new Error('Gagal memperbarui catatan. Id tidak ditemukan');
     }
+
     const updatedAt = new Date().toISOString();
+
     this._notes[index] = {
       ...this._notes[index],
       title,
@@ -53,10 +59,11 @@ class NotesService {
     };
   }
 
-  deleteNoteById(id) {
+  deleteNoteByIdHandler(id) {
     const index = this._notes.findIndex((note) => note.id === id);
+
     if (index === -1) {
-      throw new Error('Catatan gagal dihapus. Id tidak ditemukan');
+      throw new Error('Catatan gagal dihapus. id tidak ditemukan');
     }
     this._notes.splice(index, 1);
   }
