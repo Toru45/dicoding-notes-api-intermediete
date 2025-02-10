@@ -27,12 +27,10 @@ class NotesService {
     return id;
   }
 
-  // get notes untuk membaca seluruh notes yang disimpan
   getNotes() {
     return this._notes;
   }
 
-  // getNoteById untuk membaca note berdasarkan id
   getNoteById(id) {
     const note = this._notes.filter((n) => n.id === id)[0];
     if (!note) {
@@ -59,11 +57,10 @@ class NotesService {
     };
   }
 
-  deleteNoteByIdHandler(id) {
+  deleteNoteById(id) {
     const index = this._notes.findIndex((note) => note.id === id);
-
     if (index === -1) {
-      throw new Error('Catatan gagal dihapus. id tidak ditemukan');
+      throw new Error('Catatan gagal dihapus. Id tidak ditemukan');
     }
     this._notes.splice(index, 1);
   }

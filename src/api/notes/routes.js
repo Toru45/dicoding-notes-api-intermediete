@@ -25,4 +25,5 @@ const routes = (handler) => [
     handler: handler.deleteNoteByIdHandler,
   },
 ];
+
 module.exports = routes;
