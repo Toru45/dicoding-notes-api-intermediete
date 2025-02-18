@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
-const InvariantError = require('../../exceptions/InvarianError');
-const { mapDBToModel } = require('../../utils');
+const { nanoid } = require('nanoid');
+const InvariantError = require('../../exceptions/InvariantError');
 const NotFoundError = require('../../exceptions/NotFoundError');
+const { mapDBToModel } = require('../../utils');
 
 class NotesService {
   constructor() {
@@ -40,9 +40,11 @@ class NotesService {
       values: [id],
     };
     const result = await this._pool.query(query);
+
     if (!result.rows.length) {
       throw new NotFoundError('Catatan tidak ditemukan');
     }
+
     return result.rows.map(mapDBToModel)[0];
   }
 
@@ -67,6 +69,7 @@ class NotesService {
     };
 
     const result = await this._pool.query(query);
+
     if (!result.rows.length) {
       throw new NotFoundError('Catatan gagal dihapus. Id tidak ditemukan');
     }
