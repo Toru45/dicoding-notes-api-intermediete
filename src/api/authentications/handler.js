@@ -34,7 +34,6 @@ class AuthenticationsHandler {
   }
 
   async putAuthenticationHandler(request, h) {
-    // memperbarui access token
     this._validator.validatePutAuthenticationPayload(request.payload);
 
     const { refreshToken } = request.payload;
