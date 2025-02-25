@@ -6,8 +6,9 @@ const { mapDBToModel } = require('../../utils');
 const AuthorizationError = require('../../exceptions/AuthorizationError');
 
 class NotesService {
-  constructor() {
+  constructor(collaborationService) {
     this._pool = new Pool();
+    this._collaborationService = collaborationService;
   }
 
   async addNote({
@@ -93,6 +94,20 @@ class NotesService {
     const note = result.rows[0];
     if (note.owner !== owner) {
       throw new AuthorizationError('Anda tidak berhak mengakses resource ini');
+    }
+  }
+
+  // verifyNoteAccess mengandalkan fungsi verifyCollaborator
+  // yang dimiliki oleh CollaborationsService
+
+  // verifyNoteAccess memiliki fungsi untuk memverifikasi hak akses pengguna
+  async verifyNoteAccess(noteId, userId) {
+    try {
+      await this.verifyNoteOwner(noteId, userId);
+    } catch (error) {
+      if (error instanceof NotFoundError) {
+        throw error;
+      }
     }
   }
 }
