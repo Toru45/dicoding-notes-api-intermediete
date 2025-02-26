@@ -20,7 +20,6 @@ class CollaborationsService {
     if (!result.rows.length) {
       throw new InvariantError('Kolaborasi gagal ditambahkan');
     }
-
     return result.rows[0].id;
   }
 
@@ -37,7 +36,6 @@ class CollaborationsService {
     }
   }
 
-  // memeriksa apakah user bagian dari catatan
   async verifyCollaborator(noteId, userId) {
     const query = {
       text: 'SELECT * FROM collaborations WHERE note_id = $1 AND user_id = $2',

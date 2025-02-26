@@ -1,7 +1,6 @@
 const AuthenticationsHandler = require('./handler');
 const routes = require('./routes');
 
-// authentication plugin
 module.exports = {
   name: 'authentications',
   version: '1.0.0',
