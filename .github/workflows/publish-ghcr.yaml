@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build and push image
-      run:
+      run: |
         docker login --username yukitoki02 --password ${{ secrets.GH_PERSONALACCTOKEN }} ghcr.io
         docker build . --tag ghcr.io/toru45/dicodingintermedietenoteapi:latest
         docker push ghcr.io/toru45/dicodingintermedietenoteapi:latest
