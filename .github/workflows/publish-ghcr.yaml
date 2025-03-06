@@ -4,13 +4,12 @@ on:
   push
 
 jobs:
-  build:
+  build-and_piblish:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - name: Build and push image
+    - name: build and push docker image
       run: |
-        docker login --username yukitoki02 --password ${{ secrets.GH_PERSONALACCTOKEN }} ghcr.io
+        docker login --username yukitoki02 --password ${{ secrets.GHCR_PAT }} ghcr.io
         docker build . --tag ghcr.io/toru45/dicodingintermedietenoteapi:latest
         docker push ghcr.io/toru45/dicodingintermedietenoteapi:latest
