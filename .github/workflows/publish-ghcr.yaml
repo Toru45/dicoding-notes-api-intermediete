@@ -8,8 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: build and push docker image
-      run: |
+    - name: Docekr login
+      run:
         docker login --username yukitoki02 --password ${{ secrets.GHCR_PAT }} ghcr.io
+    - name: Docker build
+      run:
         docker build . --tag ghcr.io/toru45/dicodingintermedietenoteapi:latest
+    - name: Docker push
+      run:
         docker push ghcr.io/toru45/dicodingintermedietenoteapi:latest
