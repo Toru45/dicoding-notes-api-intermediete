@@ -12,5 +12,5 @@ jobs:
     - name: Build and push image
       run:
         docker login --username yukitoki02 --password ${{ secrets.GH_PERSONALACCTOKEN }} ghcr.io
-        docker build . -t ghcr.io/toru45/dicodingintermedietenoteapi:latest
+        docker build . --tag ghcr.io/toru45/dicodingintermedietenoteapi:latest
         docker push ghcr.io/toru45/dicodingintermedietenoteapi:latest
